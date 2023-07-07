@@ -21,7 +21,7 @@ init_users = [
 # Configuration de l'API
 api = Api(app=app, version='1.1', title="Manag's App", description='Mon premier API CRUD en Flask pour la gestion des utilisateurs', validate=True)
 ns_user = api.namespace('Infos', description="User's contact")
-ns_need = api.namespace('Stay', description="User's localisation")
+ns_stay = api.namespace('Stay', description="User's localisation")
 
 # Modèle d'utilisateur
 user_model = api.model('User', {
@@ -105,7 +105,7 @@ class User(Resource):
         else:
             return jsonify({'message': 'Utilisateur non trouvé'})
 
-@ns_need.route('/users')
+@ns_stay.route('/users')
 class StayList(Resource):
     """
     Endpoint pour la gestion des localisations
@@ -121,7 +121,7 @@ class StayList(Resource):
             stay_list.append(stay)
         return jsonify(stay_list)
 
-    @ns_need.expect(need_model, validate=True)
+    @ns_stay.expect(need_model, validate=True)
     def post(self):
         """
         Crée une nouvelle localisation
@@ -134,7 +134,7 @@ class StayList(Resource):
         inserted_id = str(result.inserted_id)
         return jsonify({'message': 'Localisation créée avec succès', 'id': inserted_id})
 
-@ns_need.route('/users/<user_id>')
+@ns_stay.route('/users/<user_id>')
 class Stay(Resource):
     """
     Endpoint pour une localisation spécifique
@@ -150,7 +150,7 @@ class Stay(Resource):
         else:
             return jsonify({'message': 'Localisation non trouvée'})
 
-    @ns_need.expect(need_model, validate=True)
+    @ns_stay.expect(need_model, validate=True)
     def put(self, user_id):
         """
         Met à jour la localisation d'un utilisateur
