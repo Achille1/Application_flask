@@ -1,10 +1,24 @@
+# Application Flask pour la gestion des utilisateurs et de la localisation
 
+Une petite application Flask (Python) pour gérer des utilisateurs et leurs localisations associés à une base de données MongoDB.
 
-### Application Flask pour la gestion des utilisateurs avec MongoDB
+## Fonctionnalités :  :dart:
 
-Cette application Flask est conçue pour gérer les utilisateurs en utilisant une base de données MongoDB. Elle permet de créer, lire, mettre à jour et supprimer des utilisateurs.
+- Gestion des utilisateurs : :one:
+    - Récupérer tous les utilisateurs
+    - Récupérer un utilisateur par son ID
+    - Créer un nouvel utilisateur
+    - Mettre à jour un utilisateur
+    - Supprimer un utilisateur
 
-#### Étapes: :rocket:
+- Gestion de la localisation : :two:
+    - Récupérer toutes les localisations des utilisateurs
+    - Récupérer la localisation d'un utilisateur par son ID
+    - Créer une nouvelle localisation pour un utilisateur
+    - Mettre à jour la localisation d'un utilisateur
+    - Supprimer la localisation d'un utilisateur
+
+## Étapes: :zap:
 
 1. **Coder l'application Flask** : Le code de l'application Flask se trouve dans le fichier `app_flask.py`. Il utilise Flask et Flask-PyMongo pour interagir avec la base de données MongoDB.
 
@@ -14,9 +28,16 @@ Cette application Flask est conçue pour gérer les utilisateurs en utilisant un
 
 4. **Ajouter une interface utilisateur MongoDB avec Mongo Express** : En plus de l'application Flask et de MongoDB, vous pouvez ajouter une interface utilisateur pour MongoDB avec Mongo Express. Cela permet de gérer la base de données de manière conviviale.
 
-5. **Bonus : Ajouter un volume de persistance pour la base de données** : Pour assurer la persistance des données, vous pouvez configurer un volume Docker pour stocker les fichiers de la base de données MongoDB. Cela permet de conserver les données même si les conteneurs sont redémarrés.
+5. **Ajouter un volume de persistance pour la base de données** : Pour assurer la persistance des données, vous pouvez configurer un volume Docker pour stocker les fichiers de la base de données MongoDB. Cela permet de conserver les données même si les conteneurs sont redémarrés.
 
 
+## Installation : :rocket:
+
+1. Clonez ce dépôt sur votre machine locale :
+
+```shell
+    git clone https://github.com/Achille1/Application_flask.git
+```
 
 ### Licence
 
