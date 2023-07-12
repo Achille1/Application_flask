@@ -39,6 +39,10 @@ Une petite application Flask (Python) pour gérer des utilisateurs et leurs loca
     git clone https://github.com/Achille1/Application_flask.git
 ```
 
+### Interface de l'API:
+
+![](./dashboard_app.png)
+
 ### Licence
 
 Ce projet est sous licence [MIT](LICENSE).
