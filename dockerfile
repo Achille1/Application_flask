@@ -16,3 +16,4 @@ ENV FLASK_APP=app_flask.py
 
 # Run the Flask app using Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app_flask:app"]
+
