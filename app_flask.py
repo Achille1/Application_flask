@@ -181,5 +181,7 @@ if __name__ == '__main__':
     for user in init_users:
         mongo.db.users.insert_one(user)
 
-    app.run(host='0.0.0.0', port=5000)
+    # Utilisation de l'adresse IP et du port fournis par Render
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
 
