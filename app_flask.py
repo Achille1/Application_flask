@@ -57,9 +57,7 @@ class Users(Resource):
         """
         Crée un nouvel utilisateur
         """
-        name = request.json['name']
-        email = request.json['email']
-        user_data = {'name': name, 'email': email}
+        user_data = request.json
         result = mongo.db.users.insert_one(user_data)
         inserted_id = str(result.inserted_id)
         return jsonify({'message': 'Utilisateur créé avec succès', 'id': inserted_id})
@@ -85,26 +83,16 @@ class User(Resource):
         """
         Met à jour un utilisateur
         """
-        user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        if user:
-            name = request.json['name']
-            email = request.json['email']
-            user_data = {'name': name, 'email': email}
-            mongo.db.users.update_one({'_id': ObjectId(user_id)}, {'$set': user_data})
-            return jsonify({'message': 'Utilisateur mis à jour avec succès'})
-        else:
-            return jsonify({'message': 'Utilisateur non trouvé'})
+        user_data = request.json
+        mongo.db.users.update_one({'_id': ObjectId(user_id)}, {'$set': user_data})
+        return jsonify({'message': 'Utilisateur mis à jour avec succès'})
 
     def delete(self, user_id):
         """
         Supprime un utilisateur
         """
-        user = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        if user:
-            mongo.db.users.delete_one({'_id': ObjectId(user_id)})
-            return jsonify({'message': 'Utilisateur supprimé avec succès'})
-        else:
-            return jsonify({'message': 'Utilisateur non trouvé'})
+        mongo.db.users.delete_one({'_id': ObjectId(user_id)})
+        return jsonify({'message': 'Utilisateur supprimé avec succès'})
 
 @ns_stay.route('/users')
 class StayList(Resource):
@@ -127,10 +115,7 @@ class StayList(Resource):
         """
         Crée une nouvelle localisation
         """
-        name = request.json['name']
-        country = request.json['country']
-        city = request.json['city']
-        stay_data = {'name': name, 'country': country, 'city': city}
+        stay_data = request.json
         result = mongo.db.users.insert_one(stay_data)
         inserted_id = str(result.inserted_id)
         return jsonify({'message': 'Localisation créée avec succès', 'id': inserted_id})
@@ -156,27 +141,16 @@ class Stay(Resource):
         """
         Met à jour la localisation d'un utilisateur
         """
-        stay = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        if stay:
-            name = request.json['name']
-            country = request.json['country']
-            city = request.json['city']
-            stay_data = {'name': name, 'country': country, 'city': city}
-            mongo.db.users.update_one({'_id': ObjectId(user_id)}, {'$set': stay_data})
-            return jsonify({'message': 'Localisation mise à jour avec succès'})
-        else:
-            return jsonify({'message': 'Localisation non trouvée'})
+        stay_data = request.json
+        mongo.db.users.update_one({'_id': ObjectId(user_id)}, {'$set': stay_data})
+        return jsonify({'message': 'Localisation mise à jour avec succès'})
 
     def delete(self, user_id):
         """
         Supprime la localisation d'un utilisateur
         """
-        stay = mongo.db.users.find_one({'_id': ObjectId(user_id)})
-        if stay:
-            mongo.db.users.delete_one({'_id': ObjectId(user_id)})
-            return jsonify({'message': 'Localisation supprimée avec succès'})
-        else:
-            return jsonify({'message': 'Localisation non trouvée'})
+        mongo.db.users.delete_one({'_id': ObjectId(user_id)})
+        return jsonify({'message': 'Localisation supprimée avec succès'})
 
 if __name__ == '__main__':
     for user in init_users:
@@ -184,4 +158,3 @@ if __name__ == '__main__':
 
     # Utilisation de l'adresse IP et du port fournis par Render
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-
